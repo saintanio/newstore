@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduTech</title>
+  <link rel="icon" href="src/images/logo.png" sizes="16x16 32x32" type="image/png">
+  <meta name="description" content="EduMod est une entreprise qui s'interesse a tout ce qui 
+  se lie a la technologie : formation, commande, configuration, installation etc...
+  E-mail: saintanio@gmail.com ">
+  <meta name="author" content="Saintanio ESTIMABLE">
+  <link rel="stylesheet" href="./src/css/main.css">
+  <link rel="stylesheet" href="./src/css/more_options.css">
+
+  <head>
+  </head>
+
+<body>
+  <header>
+    <nav>
+      <a href="#" id="btn-dashboard" title="Accueil">&#128257;</a>
+      <a href="#" id="btn-nouveau" data-page="partenaire">&#128240;Partenaires</a>
+      <!-- <a href="#"  id="btn-panier" data-page="panier" data-code="0">&#129530;Transactions</a> -->
+      <a href="#" id="btn-produit" data-page="produit">&#128230;Produit</a> <!-- pour telecharger un backup -->
+      <a href="#" id="btn-stock" data-page="stock">🧱Stock</a> <!-- pour telecharger un backup -->
+      <!-- <a href="#"  id="exporter" data-page="save">&#128190;Save</a>  pour telecharger un backup -->
+      <!-- <a href="#" id="importer">📥 Importer</a>
+      <input type="file" id="importFile" accept=".json" style="display: none;"> -->
+
+    </nav>
+    <search>
+      <span class="icon">&#128269;</span>
+      <input type="search" id="recherche" placeholder="Recherche par nom">
+      <button id="login" title="Login">&#128274;</button>
+    </search>
+  </header>
+  <aside id="lateral">
+    <nav id="menu">
+      <a href="#licence" id="creerLic">Nouvelle licence</a>
+    </nav>
+  </aside>
+  <main>
+    <section class="sommaire" id="sommaire">
+      <nav>
+        <a href="#" class="tablinks" id="rTrans">&#128202;Transactions</a>
+        <a href="#" class="tablinks" id="rClient">🧺Clients</a>
+        <a href="#" class="tablinks" id="today">🌞Aujourd'hui</a>
+        <a href="#" class="tablinks" id="moisCourant">&#128197;Mois courant</a>
+        <a href="#" class="tablinks" id="moisDernier">&#128198;Mois dernier</a>
+      </nav>
+      <div id="container" class="table-container"> </div>
+    </section>
+    <section>
+      <fieldset id="fieldset" class="notshow">
+        <legend id="frm_entite">Formulaire : </legend>
+        <form id="formulaire">
+        </form>
+        <button id="enregistrer" class="notshow">Enregistrer</button>
+      </fieldset>
+    </section>
+    <article>
+      <div id="tableview" class="table-container">
+        <table id="tableau">
+        </table>
+        <div id="pagination" class="pagination"></div>
+      </div>
+    </article>
+  </main>
+
+  <div id="message-box"></div>
+  <footer><a href="#" id="setting" title="Mettre la licence ajour">⚙</a>saintanio@gmail.com</footer>
+  <input type="file" id="importFile" accept=".json" style="display: none;">
+  <script type="module" src="./src/js/app.js"></script>
+
+</body>
+
+</html>

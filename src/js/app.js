@@ -6,12 +6,13 @@ import { afficherMessage, calculerEtatStock, creerLicence, crypterMotDePasse, ge
 import { afficherEtatStock, afficherRapport, afficherTableauClients } from "./ui.js";
 // ======================== Gestion de menus ============================
 
+
 document.addEventListener("DOMContentLoaded", async () => {
     const zoneFormulaire = document.getElementById("fieldset");
     const login = document.getElementById("login");
     // Ton code d'initialisation
     await DBManager.init();
-
+alert("bojour App")
     // verifierHeureLocale();
 
     // const dernier = await DBManager.getDerniereLicence();

@@ -1,5 +1,0 @@
-
-alert("bojour App")
-
-
-

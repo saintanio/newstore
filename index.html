@@ -11,7 +11,7 @@
   E-mail: saintanio@gmail.com ">
   <meta name="author" content="Saintanio ESTIMABLE">
   <link rel="manifest" href="./manifest.json" />
-<meta name="theme-color" content="#006699" />
+  <meta name="theme-color" content="#006699" />
 
   <link rel="stylesheet" href="./src/css/main.css">
   <link rel="stylesheet" href="./src/css/more_options.css">
@@ -42,16 +42,26 @@
     <nav id="menu">
       <a href="#licence" id="creerLic">Nouvelle licence</a>
       <a href="#" id="installBtn">Inatall</a>
+      - 📥
+      - 📲
     </nav>
   </aside>
   <main>
     <section class="sommaire" id="sommaire">
       <nav>
-        <a href="#" class="tablinks" id="rTrans">&#128202;Transactions</a>
+        <a href="#" class="tablinks" id="rTrans">&#128202;Ventes</a>
         <a href="#" class="tablinks" id="rClient">🧺Clients</a>
-        <a href="#" class="tablinks" id="today">🌞Aujourd'hui</a>
-        <a href="#" class="tablinks" id="moisCourant">&#128197;Mois courant</a>
-        <a href="#" class="tablinks" id="moisDernier">&#128198;Mois dernier</a>
+        <div class="dropdown">
+          <div class="dropbtn">⋮</div>
+          <div class="dropdown-content">
+            <a href="#" class="tablinks" id="today" title="Aujourd'hui">&#127774;</a>
+            <a href="#" class="tablinks" id="moisCourant" title="Mois en cours">&#128197;</a>
+            <a href="#" class="tablinks" id="moisDernier" title="Mois dernier">&#128198;</a>
+          </div>
+        </div>
+        <!-- <a href="#" class="tablinks" id="today">🌞Live</a>
+        <a href="#" class="tablinks" id="moisCourant">&#128197;Actuel</a>
+        <a href="#" class="tablinks" id="moisDernier">&#128198;Précédent</a> -->
       </nav>
       <div id="container" class="table-container"> </div>
     </section>
@@ -76,41 +86,41 @@
   <footer><a href="#" id="setting" title="Mettre la licence ajour">⚙</a>saintanio@gmail.com</footer>
   <input type="file" id="importFile" accept=".json" style="display: none;">
   <script src="main.js"></script>
- <script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').then(reg => {
-    // Vérifie si un nouveau SW est dispo
-    reg.onupdatefound = () => {
-      const newWorker = reg.installing;
-      newWorker.onstatechange = () => {
-        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-          // Nouvelle version dispo, rechargement forcé
-          window.location.reload();
-        }
-      };
-    };
-  }).catch(err => console.error("Erreur SW :", err));
-}
-let deferredPrompt;
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').then(reg => {
+        // Vérifie si un nouveau SW est dispo
+        reg.onupdatefound = () => {
+          const newWorker = reg.installing;
+          newWorker.onstatechange = () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              // Nouvelle version dispo, rechargement forcé
+              window.location.reload();
+            }
+          };
+        };
+      }).catch(err => console.error("Erreur SW :", err));
+    }
+    let deferredPrompt;
 
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  // Affiche ton bouton
-  document.getElementById("installBtn").style.display = "block";
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      // Affiche ton bouton
+      document.getElementById("installBtn").style.display = "block";
 
-  document.getElementById("installBtn").addEventListener("click", () => {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(choice => {
-      if (choice.outcome === 'accepted') {
-        console.log("PWA installée !");
-      }
-      deferredPrompt = null;
+      document.getElementById("installBtn").addEventListener("click", () => {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(choice => {
+          if (choice.outcome === 'accepted') {
+            console.log("PWA installée !");
+          }
+          deferredPrompt = null;
+        });
+      });
     });
-  });
-});
 
-</script>
+  </script>
 
 
 </body>

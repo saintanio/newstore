@@ -41,6 +41,7 @@
   <aside id="lateral">
     <nav id="menu">
       <a href="#licence" id="creerLic">Nouvelle licence</a>
+      <a href="#" id="installBtn">Inatall</a>
     </nav>
   </aside>
   <main>
@@ -90,6 +91,24 @@ if ('serviceWorker' in navigator) {
     };
   }).catch(err => console.error("Erreur SW :", err));
 }
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  // Affiche ton bouton
+  document.getElementById("installBtn").style.display = "block";
+
+  document.getElementById("installBtn").addEventListener("click", () => {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(choice => {
+      if (choice.outcome === 'accepted') {
+        console.log("PWA installée !");
+      }
+      deferredPrompt = null;
+    });
+  });
+});
 
 </script>
 

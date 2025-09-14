@@ -669,14 +669,14 @@ class DB {
 
     if (store === "produit") {
       const base = `${data.designation}${data.categorie}`;
-      return _hash(base);
+      return this._hash(base);
     }
     else if (store === "transaction") {
       return `${data.produit}_${data.panier}`;
     }
     else if (store === "stock") {
       const base =  `${data.produit}_${jour}`;
-      return _hash(base);
+      return this._hash(base);
     }
     else if (store === "partenaire") {
       return `${data.telephone}`;
@@ -1410,7 +1410,6 @@ class FormulaireFactory {
   }
 }
 
-////////////////////////////////////////////////////////////////////////////
 function ouvrirApercuHTML(titre, contenuHTML, orientation = "portrait") {
   const fenetre = window.open("", "_blank");
 

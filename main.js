@@ -182,7 +182,51 @@ document.addEventListener("DOMContentLoaded", async () => {
     })
     //Écouteur sur le bouton accueil
     document.getElementById("btn-dashboard").addEventListener("click", async () => {
-        location.reload();
+        window.location.reload(true)
+    });
+    //Écouteur sur le bouton accueil
+    document.getElementById("copyright").addEventListener("click", (e) => {
+  
+        e.preventDefault();
+        document.getElementById("sommaire").innerHTML = creerLicence;
+
+        const form = document.getElementById("formulaire");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault(); // Empêche le rechargement de la page
+
+            const commandeLicence = document.getElementById("commandeLicence").value;
+
+            if (!commandeLicence) {
+                alert("Veuillez coller la requête.");
+                return;
+            }
+            const resultat = textareaVersObjet(commandeLicence);
+            const cpright = await crypterMotDePasse(resultat.plafond);
+
+            const licence = {
+                nom: resultat.nom,
+                prenom: resultat.prenom,
+                ninu: resultat.ninu,
+                plafond: resultat.plafond,
+                copyright: cpright
+            };
+
+            const encoded = btoa(JSON.stringify(licence));
+            const crypt = { id: encoded };
+
+            //------------------------------Telecharger le fichier--------------------------
+            const blob = new Blob([JSON.stringify(crypt, null, 2)], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `licence_${resultat.ninu} .json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            //------------------------------------------------------------------------------
+
+        });
+
     });
 
     //Écouteur sur le bouton nouveau
@@ -234,51 +278,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         boutonAdd({}, "stock");
         afficherTableau("stock");
-    })
-
-    // Écouteur sur le bouton stock
-    const lic = document.getElementById("creerLic");
-    lic.addEventListener("click", (e) => {
-        e.preventDefault();
-        document.getElementById("sommaire").innerHTML = creerLicence;
-
-        const form = document.getElementById("formulaire");
-
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault(); // Empêche le rechargement de la page
-
-            const commandeLicence = document.getElementById("commandeLicence").value;
-
-            if (!commandeLicence) {
-                alert("Veuillez coller la requête.");
-                return;
-            }
-            const resultat = textareaVersObjet(commandeLicence);
-            const cpright = await crypterMotDePasse(resultat.plafond);
-
-            const licence = {
-                nom: resultat.nom,
-                prenom: resultat.prenom,
-                ninu: resultat.ninu,
-                plafond: resultat.plafond,
-                copyright: cpright
-            };
-
-            const encoded = btoa(JSON.stringify(licence));
-            const crypt = { id: encoded };
-
-            //------------------------------Telecharger le fichier--------------------------
-            const blob = new Blob([JSON.stringify(crypt, null, 2)], { type: "application/json" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = `licence_${resultat.ninu} .json`;
-            a.click();
-            URL.revokeObjectURL(url);
-            //------------------------------------------------------------------------------
-
-        });
-
     })
 
 

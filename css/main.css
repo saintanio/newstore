@@ -104,20 +104,32 @@
 
   /* ====================== Body ================================= */
   /* Style the body */
-  body {
+  /* body {
     font-family: Arial;
     margin: 0;
     overflow-y: hidden;
+  } */
+
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   /* height: 85vh;
   width: 78vw; */
   /* Column container */
   main {
-    font-size: 1rem;
+
+    flex: 1;
+    padding: 20px;
+
+    /* font-size: 1rem;
     margin: 2rem;
     height: 78vh;
-    overflow-y: scroll;
+    overflow-y: scroll; */
   }
 
   main section {
@@ -164,6 +176,22 @@
     border: none;
     cursor: pointer;
   }
+
+  #message-box {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background: #444;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 9999;
+    font-size: 0.9em;
+    max-width: 300px;
+  }
+
 
   footer {
     grid-area: footer;
@@ -480,41 +508,41 @@
     text-decoration: none;
   }
 
-  #new_btn button{
+  #new_btn button {
     background-color: #ddd;
     border-radius: 50%;
     align-content: center;
     align-items: center;
   }
 
-    #new_btn :hover{
-background: var(--red-color);
+  #new_btn :hover {
+    background: var(--red-color);
   }
 
-    /* CSS (style du bouton flottant rond vert) */
+  /* CSS (style du bouton flottant rond vert) */
 
-    .btn-flottant {
-      position: absolute;
-      /* changé de fixed à absolute */
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: #28a745;
-      color: white;
-      font-size: 30px;
-      font-weight: bold;
-      border: none;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      transition: background-color 0.3s ease;
-    }
+  .btn-flottant {
+    position: absolute;
+    /* changé de fixed à absolute */
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #28a745;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
 
-    .btn-flottant:hover {
-      background-color: #218838;
-    }
+  .btn-flottant:hover {
+    background-color: #218838;
+  }

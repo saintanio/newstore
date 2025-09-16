@@ -118,6 +118,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tablinks = document.getElementsByClassName("tablinks");
   var i;
 
+  const btn_rapport = document.getElementById("btn-rapport");
+
+  btn_rapport.addEventListener("click", async (e) => {
+    const rapport = await genererRapport();
+    if (tab && tab.children.length > 0) {
+      tab.children[0].remove(); // Supprime le 2ᵉ enfant
+    }
+    afficherRapport(rapport, tab);
+    sommaire.classList.remove("notshow");
+  })
+
   document.getElementById("rTrans").addEventListener("click", async (e) => {
     for (i = 0; i < tablinks.length; i++) {
       tablinks[i].classList.remove("active");
@@ -171,10 +182,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     tab.innerHTML = "";
     afficherEtatStock(etat, tab)
   })
-   //Écouteur sur le bouton accueil
+  //Écouteur sur le bouton accueil
   document.getElementById("copyright").addEventListener("click", (e) => {
 
     e.preventDefault();
+    const valid_key = "&#129419;La chenille volera"
+
+    let key = prompt("Insert your secret key", "🦋La chenille volera");
+    if (key != null) {
+      if (key == valid_key) {
     document.getElementById("sommaire").innerHTML = creerLicence;
 
     const form = document.getElementById("formulaire");
@@ -213,6 +229,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       //------------------------------------------------------------------------------
 
     });
+      }
+    }
 
   });
 
@@ -363,12 +381,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     const btnNouveau = document.createElement("button");
     btnNouveau.innerHTML = "+";
     btnNouveau.title = contexte;
+    btnNouveau.classList.add("btn-flottant");
     btnNouveau.dataset.code = obj.id || "";
     if (contexte === "transaction") {
-          const aside = document.getElementById("new_btn");
-    if (aside && aside.children.length > 0) {
-      aside.children[0].remove(); // Supprime le 2ᵉ enfant
-    }
+      const aside = document.getElementById("new_btn");
+      if (aside && aside.children.length > 0) {
+        aside.children[0].remove(); // Supprime le 2ᵉ enfant
+      }
       aside.appendChild(btnNouveau);
     } else {
       document.body.appendChild(btnNouveau);
@@ -1878,14 +1897,15 @@ function boutonAdd(obj, contexte) {
   const btnNouveau = document.createElement("button");
   btnNouveau.innerHTML = "+";
   btnNouveau.title = contexte;
+  btnNouveau.classList.add("btn-flottant");
   btnNouveau.dataset.code = obj.id || "";
   if (contexte === "transaction") {
-              const aside = document.getElementById("new_btn");
+    const aside = document.getElementById("new_btn");
     if (aside && aside.children.length > 0) {
       aside.children[0].remove(); // Supprime le 2ᵉ enfant
     }
-      aside.appendChild(btnNouveau);
-    // document.getElementById("new_btn").appendChild(btnNouveau);
+    aside.appendChild(btnNouveau);
+    btnNouveau.style.color = "#006699";
   } else {
     document.body.appendChild(btnNouveau);
   }

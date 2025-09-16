@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 
 <head>
   <meta charset="UTF-8">
@@ -13,54 +13,59 @@
   <link rel="manifest" href="./manifest.json" />
   <meta name="theme-color" content="#006699" />
 
-  <link rel="stylesheet" href="./src/css/main.css">
-  <link rel="stylesheet" href="./src/css/more_options.css">
+  <link rel="stylesheet" href="./css/main.css">
 
-  <head>
-  </head>
+</head>
 
 <body>
   <header>
     <nav>
-      <a href="#" id="btn-dashboard" title="Accueil">&#128257;</a>
+      <a href="#" title="Accueil" id="panopen">&#9776;</a>
       <a href="#" id="btn-nouveau" data-page="partenaire">&#128240;Clients</a>
-      
-      <div class="dropdown">
-        <div class="dropbtn">⋮</div>
-        <div class="dropdown-content">
-          <a href="#" id="btn-produit" data-page="produit" title="Produit">&#128230;</a> <!-- pour telecharger un backup -->
-          <a href="#" id="btn-stock" data-page="stock" title="Stock">🧱</a> <!-- pour telecharger un backup -->
-          <a href="https://saintanio.github.io/formulaire/" target="_blank" title="Licence">&#128273;</a>
-          </div>
-        </div>
-
-     </nav>
+    </nav>
     <search>
       <span class="icon">&#128269;</span>
       <input type="search" id="recherche" placeholder="Recherche par nom">
       <button id="login" title="Login">&#128274;</button>
     </search>
   </header>
+
   <aside id="lateral">
-    <nav id="menu">
-    </nav>
+
+  <nav id="menu">
+    <div class="space">
+      <a class="isdisabled"></a>
+      <a href="javascript:void(0)" class="closebtn" id="fermer">&times;</a>
+    </div>
+  <div class="container">
+    <a href="#" id="btn-produit" data-page="produit" title="Produit">&#128230;Produits</a>
+    <a href="#" id="btn-stock" data-page="stock" title="Stock">🧱Stock</a>
+    <a href="https://saintanio.github.io/formulaire/" target="_blank" title="Licence">&#128273;Licence</a>
+  </div>
+  <hr>
+    <span id="cart" class="cart">
+    </span>
+
+    <div class="space" id="newpan">
+      <a  class="isdisabled"></a>
+      <a href="#" ><span id="new_btn"></span></a>
+    </div>
+  </nav>
   </aside>
+
+  <!-- The flexible grid (content) -->
   <main>
     <section class="sommaire" id="sommaire">
-      <nav>
+      <nav class="c3">
         <a href="#" class="tablinks" id="rTrans">&#128202;Ventes</a>
         <a href="#" class="tablinks" id="rClient">🧺Clients</a>
-        <div class="dropdown">
-          <div class="dropbtn">⋮</div>
-          <div class="dropdown-content">
-            <a href="#" class="tablinks" id="today" title="Aujourd'hui">&#128338;</a>
-            <a href="#" class="tablinks" id="moisCourant" title="Mois en cours">&#127774;</a>
-            <a href="#" class="tablinks" id="moisDernier" title="Mois dernier">&#128198;</a>
-          </div>
-        </div>
+        <a href="#" class="tablinks" id="today" title="Aujourd'hui">&#128338;Live</a>
+        <a href="#" class="tablinks" id="moisCourant" title="Mois en cours">&#127774;Courant</a>
+        <a href="#" class="tablinks" id="moisDernier" title="Mois dernier">&#128198;Precedent</a>
       </nav>
       <div id="container" class="table-container"> </div>
     </section>
+
     <section>
       <fieldset id="fieldset" class="notshow">
         <legend id="frm_entite">Formulaire : </legend>
@@ -76,14 +81,50 @@
         <div id="pagination" class="pagination"></div>
       </div>
     </article>
+
   </main>
 
   <div id="message-box"></div>
-  <footer><a href="#" id="setting" title="Mettre la licence ajour">⚙</a><span id="copyright">saintanio@gmail.com</span></footer>
+  <footer><a href="#" id="setting" title="Mettre la licence ajour">⚙</a><span id="copyright">saintanio@gmail.com</span>
+  </footer>
   <input type="file" id="importFile" accept=".json" style="display: none;">
-  <script src="main.js"></script>
+<script src="main.js"></script>
+
   <script>
-    if ('serviceWorker' in navigator) {
+    const panopen = document.getElementById("panopen");
+    const pan = document.getElementById("menu");
+    const produit = document.getElementById("btn-produit");
+    const stock = document.getElementById("btn-stock");
+    const fermer = document.getElementById("fermer");
+
+    panopen.addEventListener("click", (e) => {
+      openNav();
+    })
+    fermer.addEventListener("click", (e) => {
+      closeNav();
+    })
+    produit.addEventListener("click", (e) => {
+      closeNav();
+    })
+    stock.addEventListener("click", (e) => {
+      closeNav();
+    })
+    function openNav() {
+      pan.style.width = "250px";
+    }
+
+    function closeNav() {
+      pan.style.width = "0";
+    }
+
+    window.onclick = function (e) {
+      if (e.target == pan) {
+        pan.style.width = "0";
+      }
+  
+    }
+
+        if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js').then(reg => {
         // Vérifie si un nouveau SW est dispo
         reg.onupdatefound = () => {
@@ -132,9 +173,11 @@ window.addEventListener('beforeinstallprompt', (e) => {
 });
 
 
+
   </script>
 
 
 </body>
+
 
 </html>

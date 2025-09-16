@@ -171,11 +171,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     tab.innerHTML = "";
     afficherEtatStock(etat, tab)
   })
-  //Écouteur sur le bouton accueil
-  document.getElementById("btn-dashboard").addEventListener("click", async () => {
-    window.location.reload(true)
-  });
-  //Écouteur sur le bouton accueil
+   //Écouteur sur le bouton accueil
   document.getElementById("copyright").addEventListener("click", (e) => {
 
     e.preventDefault();
@@ -227,10 +223,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     zoneFormulaire.classList.add("notshow");
     sommaire.classList.add("notshow");
 
-    document.getElementById("menu").innerHTML = "";
-    const aside = document.getElementById("lateral");
-    if (aside && aside.children.length > 1) {
-      aside.children[1].remove(); // Supprime le 2ᵉ enfant
+    document.getElementById("cart").innerHTML = "";
+    const aside = document.getElementById("new_btn");
+    if (aside && aside.children.length > 0) {
+      aside.children[0].remove(); // Supprime le 2ᵉ enfant
     }
     boutonAdd({}, "partenaire");
     afficherTableau("partenaire");
@@ -243,9 +239,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     e.preventDefault();
     zoneFormulaire.classList.add("notshow");
     sommaire.classList.add("notshow");
-    document.getElementById("menu").innerHTML = "";
+    document.getElementById("cart").innerHTML = "";
 
-    const aside = document.getElementById("lateral");
+    const aside = document.getElementById("newpan");
     if (aside && aside.children.length > 1) {
       aside.children[1].remove(); // Supprime le 2ᵉ enfant
     }
@@ -260,9 +256,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     e.preventDefault();
     zoneFormulaire.classList.add("notshow");
     sommaire.classList.add("notshow");
-    document.getElementById("menu").innerHTML = "";
+    document.getElementById("cart").innerHTML = "";
 
-    const aside = document.getElementById("lateral");
+    const aside = document.getElementById("newpan");
     if (aside && aside.children.length > 1) {
       aside.children[1].remove(); // Supprime le 2ᵉ enfant
     }
@@ -366,11 +362,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   function boutonAdd(obj, contexte) {
     const btnNouveau = document.createElement("button");
     btnNouveau.innerHTML = "+";
-    btnNouveau.className = "btn-flottant";
     btnNouveau.title = contexte;
     btnNouveau.dataset.code = obj.id || "";
     if (contexte === "transaction") {
-      document.getElementById("lateral").appendChild(btnNouveau);
+          const aside = document.getElementById("new_btn");
+    if (aside && aside.children.length > 0) {
+      aside.children[0].remove(); // Supprime le 2ᵉ enfant
+    }
+      aside.appendChild(btnNouveau);
     } else {
       document.body.appendChild(btnNouveau);
     }
@@ -1160,6 +1159,7 @@ class TableauFactory {
           }
           boutonAdd(obj, "transaction");
           afficherPaniersClient(obj.id);
+          openNav();
         }
 
       });
@@ -1784,7 +1784,7 @@ async function afficherPaniersClient(idClient) {
   const paniers = await DBManager.getAll("panier");
   const paniersClient = paniers.filter(p => p.code === idClient);
 
-  const container = document.getElementById("menu");
+  const container = document.getElementById("cart");
   container.innerHTML = ""; // vider l'ancien contenu
 
   // paniersClient.forEach(panier => {
@@ -1877,11 +1877,15 @@ async function afficherPaniersClient(idClient) {
 function boutonAdd(obj, contexte) {
   const btnNouveau = document.createElement("button");
   btnNouveau.innerHTML = "+";
-  btnNouveau.className = "btn-flottant";
   btnNouveau.title = contexte;
   btnNouveau.dataset.code = obj.id || "";
   if (contexte === "transaction") {
-    document.getElementById("lateral").appendChild(btnNouveau);
+              const aside = document.getElementById("new_btn");
+    if (aside && aside.children.length > 0) {
+      aside.children[0].remove(); // Supprime le 2ᵉ enfant
+    }
+      aside.appendChild(btnNouveau);
+    // document.getElementById("new_btn").appendChild(btnNouveau);
   } else {
     document.body.appendChild(btnNouveau);
   }

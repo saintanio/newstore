@@ -457,7 +457,6 @@ function configuration() {
       { name: "prenom", id: "prenom", type: "text", placeholder: "Prenom du partenaire", required: true },
       { name: "telephone", id: "telephone", type: "text", placeholder: "Telephone du partenaire", required: true },
       { name: "ninu", id: "ninu", type: "text", placeholder: "NINU du partenaire" },
-      { name: "categorie", id: "categorie", type: "select", options: ["fournisseur", "client"], required: true },
       { name: "adresse", id: "adresse", type: "text", placeholder: "Adresse du partenaire" }
     ],
 

@@ -1067,7 +1067,7 @@ class TableauFactory {
 
       const tdActions = document.createElement("td");
       const btnEdit = document.createElement("a");
-      btnEdit.innerHTML = "&#128393;";
+      btnEdit.innerHTML = "&#128221;";
       btnEdit.style.marginLeft = "1rem"
       btnEdit.style.marginRight = "1rem"
       btnEdit.classList.add("action")

@@ -170,6 +170,15 @@ window.addEventListener('beforeinstallprompt', (e) => {
   });
 });
 
+window.addEventListener("beforeunload", (e) => {
+  if (!navigator.onLine) {
+    e.preventDefault();
+    e.returnValue = "Vous êtes hors ligne. Le rafraîchissement peut casser l’application.";
+  const etat = { page: currentPage, donnees: formData };
+  localStorage.setItem("etat_app", JSON.stringify(etat));
+
+  }
+});
 
 
   </script>

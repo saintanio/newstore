@@ -4,6 +4,25 @@ const config = configuration();
 document.addEventListener("DOMContentLoaded", async () => {
   const zoneFormulaire = document.getElementById("fieldset");
   const login = document.getElementById("login");
+    if (!navigator.onLine) {
+  const sauvegarde = localStorage.getItem("etat_app");
+  if (sauvegarde) {
+    const { page, donnees } = JSON.parse(sauvegarde);
+    
+    // Appelle ici ta fonction pour afficher la bonne page
+    afficherPage(page);
+
+    // Si tu veux pré-remplir un formulaire :
+    if (donnees) {
+      for (let key in donnees) {
+        const input = document.querySelector(`[name="${key}"]`);
+        if (input) input.value = donnees[key];
+      }
+    }
+  }
+
+  }
+
   // Ton code d'initialisation
   await DBManager.init();
 

@@ -32,23 +32,23 @@
 
   <aside id="lateral">
 
-  <nav id="menu">
-    <div class="space">
-      <a class="isdisabled"></a>
-      <a href="javascript:void(0)" class="closebtn" id="fermer">&times;</a>
-    </div>
-  <div class="container">
-    <a href="#" id="btn-produit" data-page="produit" title="Produit">&#128230;Produits</a>
-    <a href="#" id="btn-stock" data-page="stock" title="Stock">🧱Stock</a>
-    <a href="#" id="btn-rapport"  title="Sommaire">📊Sommaire</a>
-    <a href="https://saintanio.github.io/formulaire/" target="_blank" title="Licence">&#128273;Licence</a>
-  </div>
-  <hr>
-    <span id="cart" class="cart">
-    </span>
+    <nav id="menu">
+      <div class="space">
+        <a class="isdisabled"></a>
+        <a href="javascript:void(0)" class="closebtn" id="fermer">&times;</a>
+      </div>
+      <div class="container">
+        <a href="#" id="btn-produit" data-page="produit" title="Produit">&#128230;Produits</a>
+        <a href="#" id="btn-stock" data-page="stock" title="Stock">🧱Stock</a>
+        <a href="#" id="btn-rapport" title="Sommaire">📊Sommaire</a>
+        <a href="https://saintanio.github.io/formulaire/" target="_blank" title="Licence">&#128273;Licence</a>
+      </div>
+      <hr>
+      <span id="cart" class="cart">
+      </span>
 
-<span id="new_btn"></span>
-  </nav>
+      <span id="new_btn"></span>
+    </nav>
   </aside>
 
   <!-- The flexible grid (content) -->
@@ -83,10 +83,11 @@
   </main>
 
   <div id="message-box"></div>
-  <footer><a href="#" id="setting" title="Mettre la licence ajour">⚙</a><span id="copyright">&copy; 2025 Saintanio. Tous droits réservés</span>
+  <footer><a href="#" id="setting" title="Mettre la licence ajour">⚙</a><span id="copyright">&copy; 2025 Saintanio. Tous
+      droits réservés</span>
   </footer>
   <input type="file" id="importFile" accept=".json" style="display: none;">
-<script src="main.js"></script>
+  <script src="main.js"></script>
 
   <script>
     const panopen = document.getElementById("panopen");
@@ -119,10 +120,10 @@
       if (e.target == pan) {
         pan.style.width = "0";
       }
-  
+
     }
 
-        if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js').then(reg => {
         // Vérifie si un nouveau SW est dispo
         reg.onupdatefound = () => {
@@ -138,47 +139,44 @@
     }
     let deferredPrompt;
 
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  let deferredPrompt = e;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      let deferredPrompt = e;
 
-  // Créer le bouton
-  const installBtn = document.createElement("button");
-  installBtn.innerHTML = "<span style='font-size:50px;'>&#128229;</span>";
-  installBtn.title = "Installer l'app";
-  installBtn.style.position = "fixed";
-  installBtn.style.bottom = "20px";
-  installBtn.style.right = "20px";
-  installBtn.style.padding = "10px 20px";
-  installBtn.style.color = "#fff";
-  installBtn.style.border = "none";
-  installBtn.style.borderRadius = "5px";
-  installBtn.style.cursor = "pointer";
-  installBtn.style.zIndex = "1000";
+      // Créer le bouton
+      const installBtn = document.createElement("button");
+      installBtn.innerHTML = "<span style='font-size:50px;'>&#128229;</span>";
+      installBtn.title = "Installer l'app";
+      installBtn.style.position = "fixed";
+      installBtn.style.bottom = "20px";
+      installBtn.style.right = "20px";
+      installBtn.style.padding = "10px 20px";
+      installBtn.style.color = "#fff";
+      installBtn.style.border = "none";
+      installBtn.style.borderRadius = "5px";
+      installBtn.style.cursor = "pointer";
+      installBtn.style.zIndex = "1000";
 
-  document.body.appendChild(installBtn);
+      document.body.appendChild(installBtn);
 
-  installBtn.addEventListener("click", () => {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choice) => {
-      if (choice.outcome === "accepted") {
-        console.log("PWA installée !");
-      }
-      deferredPrompt = null;
-      installBtn.remove(); // Retire le bouton après l'installation
+      installBtn.addEventListener("click", () => {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choice) => {
+          if (choice.outcome === "accepted") {
+            console.log("PWA installée !");
+          }
+          deferredPrompt = null;
+          installBtn.remove(); // Retire le bouton après l'installation
+        });
+      });
     });
-  });
-});
 
-window.addEventListener("beforeunload", (e) => {
-  if (!navigator.onLine) {
-    e.preventDefault();
-    e.returnValue = "Vous êtes hors ligne. Le rafraîchissement peut casser l’application.";
-  const etat = { page: currentPage, donnees: formData };
-  localStorage.setItem("etat_app", JSON.stringify(etat));
-
-  }
-});
+    window.addEventListener("beforeunload", (e) => {
+      if (!navigator.onLine) {
+        e.preventDefault();
+        e.returnValue = "Vous êtes hors ligne. Vos données risquent d'être perdues si vous quittez.";
+      }
+    });
 
 
   </script>

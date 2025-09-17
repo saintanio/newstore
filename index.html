@@ -171,14 +171,6 @@
       });
     });
 
-    window.addEventListener("beforeunload", (e) => {
-      if (!navigator.onLine) {
-        e.preventDefault();
-        e.returnValue = "Vous êtes hors ligne. Vos données risquent d'être perdues si vous quittez.";
-      }
-    });
-
-
   </script>
 
 

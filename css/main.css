@@ -248,6 +248,7 @@
 
   #container {
     margin-top: 0;
+    font-size: 1rem;
   }
 
 
@@ -461,9 +462,7 @@
   .cart {
     display: flex;
     flex-wrap: wrap;
-    font-size: 1.5rem;
     align-content: flex-start;
-    /* overflow: scroll; */
     text-align: left;
   }
 
@@ -493,9 +492,12 @@
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
+    font-size: 1rem;
     padding: 0.3rem 0;
-    color: #007bff;
-    font-weight: bold;
+    color: var(--link-color);
+    font-weight: normal;
+    text-decoration: none;
+
   }
 
   .label-panier input {

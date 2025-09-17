@@ -1,12 +1,12 @@
 const CACHE_NAME = "mon-cache-v1";
 const ASSETS = [
-  " /newstore/", // à adapter selon ton hébergement (sur GitHub Pages, mets '/newstore/')
-  " /newstore/index.html",
-  " /newstore/js/app.js",
-  " /newstore/main.css",
-   "/newstore/manifest.json", 
-  " /newstore/images/icon-192.png",
-  " /newstore/images/icon-512.png",
+  " /", // à adapter selon ton hébergement (sur GitHub Pages, mets '/')
+  " /index.html",
+  " /js/app.js",
+  " /main.css",
+   "/manifest.json", 
+  " /images/icon-192.png",
+  " /images/icon-512.png",
   // ajoute ici tous les autres fichiers nécessaires pour ton app offline
 ];
 

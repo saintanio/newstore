@@ -573,10 +573,7 @@
     display: grid;
     grid-template-areas: "select";
     align-items: center;
-
     width: 100%;
-    min-width: 15ch;
-    max-width: 30ch;
     border: 1px solid var(--select-border);
     border-radius: 0.25em 0.25em 0 0;
     font-size: 1.25rem;

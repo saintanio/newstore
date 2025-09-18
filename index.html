@@ -54,13 +54,20 @@
   <!-- The flexible grid (content) -->
   <main>
     <section class="sommaire" id="sommaire">
-      <nav class="c3">
-        <a href="#" class="tablinks" id="rTrans">&#128202;Ventes</a>
-        <a href="#" class="tablinks" id="rClient">🧺Clients</a>
-        <a href="#" class="tablinks" id="today" title="Aujourd'hui">&#128338;Live</a>
-        <a href="#" class="tablinks" id="moisCourant" title="Mois en cours">&#127774;Courant</a>
-        <a href="#" class="tablinks" id="moisDernier" title="Mois dernier">&#128198;Precedent</a>
-      </nav>
+
+      <div class="select">
+        <select id="rapport">
+          <optgroup label="Rapport de vente">
+            <option value="rTrans">&#128202;Ventes</option>
+            <option value="rClient">🧺Clients</option>
+          </optgroup>
+          <optgroup label="Rapport de stock">
+            <option value="today">&#128338;Aujourd'hui</option>
+            <option value="moisCourant">&#127774;Mois en cours</option>
+            <option value="moisDernier">&#128198;Mois dernier</option>
+          </optgroup>
+        </select>
+      </div>
       <div id="container" class="table-container"> </div>
     </section>
 

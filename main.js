@@ -112,12 +112,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   })
   //=======================Login========================
 
-  const donnees = await genererInfosClients();
-
   const sommaire = document.getElementById("sommaire");
   const tab = document.getElementById("container");
-  const tablinks = document.getElementsByClassName("tablinks");
-  var i;
 
   const btn_rapport = document.getElementById("btn-rapport");
 
@@ -130,59 +126,35 @@ document.addEventListener("DOMContentLoaded", async () => {
     sommaire.classList.remove("notshow");
   })
 
-  document.getElementById("rTrans").addEventListener("click", async (e) => {
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].classList.remove("active");
+  afficherRapport(await genererRapport(), tab);
+  document.getElementById("rapport").addEventListener("change", async (e) => {
+    e.preventDefault();
+    if (e.target.value == "rTrans") {
+      const rapport = await genererRapport();
+      if (tab && tab.children.length > 0) {
+        tab.children[0].remove(); // Supprime le 2ᵉ enfant
+      }
+      afficherRapport(rapport, tab);
+      sommaire.classList.remove("notshow");
+    } else if (e.target.value == "rClient") {
+      const donnees = await genererInfosClients();
+      afficherTableauClients(donnees, tab);
+    } else if (e.target.value == "today") {
+      const etat = await calculerEtatStock("today");
+      tab.innerHTML = "";
+      afficherEtatStock(etat, tab)
+    } else if (e.target.value == "moisCourant") {
+      const etat = await calculerEtatStock("moisCourant");
+      tab.innerHTML = "";
+      afficherEtatStock(etat, tab)
+    } else if (e.target.value == "moisDernier") {
+      const etat = await calculerEtatStock("moisDernier");
+      tab.innerHTML = "";
+      afficherEtatStock(etat, tab)
     }
-    e.target.classList.add("active");
-    const rapport = await genererRapport();
-    afficherRapport(rapport, tab);
-    // afficherEtatStock(etat,tab)
-  });
 
-  document.getElementById("rTrans").click(); //Afficher le rapport transaction par defaut
-  document.getElementById("rClient").addEventListener("click", async (e) => {
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].classList.remove("active");
-    }
-    e.target.classList.add("active");
-    // const etat = await calculerEtatStock("today");
-    // tab.innerHTML="";
-    const donnees = await genererInfosClients();
-    afficherTableauClients(donnees, tab);
-
-    // afficherEtatStock(etat,tab)
-  });
-
-  document.getElementById("today").addEventListener("click", async (e) => {
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].classList.remove("active");
-    }
-    e.target.classList.add("active");
-    const etat = await calculerEtatStock("today");
-    tab.innerHTML = "";
-    afficherEtatStock(etat, tab)
-  });
-
-  document.getElementById("moisCourant").addEventListener("click", async (e) => {
-    const etat = await calculerEtatStock("moisCourant");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].classList.remove("active");
-    }
-    e.target.classList.add("active");
-    tab.innerHTML = "";
-    afficherEtatStock(etat, tab)
-  });
-
-  document.getElementById("moisDernier").addEventListener("click", async (e) => {
-    const etat = await calculerEtatStock("moisDernier");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].classList.remove("active");
-    }
-    e.target.classList.add("active");
-    tab.innerHTML = "";
-    afficherEtatStock(etat, tab)
   })
+
   //Écouteur sur le bouton accueil
   document.getElementById("copyright").addEventListener("click", (e) => {
 
